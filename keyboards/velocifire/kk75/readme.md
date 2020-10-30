@@ -2,7 +2,7 @@
 
 A STM32F103C8T6-based 75% ANSI board.
 
-Keyboard Maintainer: [Andrew Gurik](https://github.com/gurellia53)  
+Keyboard Maintainer: [not Andrew Gurik](https://github.com/gurellia53)  
 Hardware Supported: STM32F103C8T6  
 
 Make example for this keyboard (after setting up your build environment):
