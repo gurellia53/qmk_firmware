@@ -302,7 +302,7 @@
  * @brief   Enables the mutual exclusion APIs on the I2C bus.
  */
 #if !defined(I2C_USE_MUTUAL_EXCLUSION) || defined(__DOXYGEN__)
-#define I2C_USE_MUTUAL_EXCLUSION            FALSE
+#define I2C_USE_MUTUAL_EXCLUSION            TRUE
 #endif
 
 /*===========================================================================*/
@@ -440,7 +440,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(SPI_USE_WAIT) || defined(__DOXYGEN__)
-#define SPI_USE_WAIT                        FALSE
+#define SPI_USE_WAIT                        TRUE
 #endif
 
 /**
@@ -457,7 +457,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(SPI_USE_MUTUAL_EXCLUSION) || defined(__DOXYGEN__)
-#define SPI_USE_MUTUAL_EXCLUSION            FALSE
+#define SPI_USE_MUTUAL_EXCLUSION            TRUE
 #endif
 
 /**
@@ -509,7 +509,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(WSPI_USE_WAIT) || defined(__DOXYGEN__)
-#define WSPI_USE_WAIT                       FALSE
+#define WSPI_USE_WAIT                       TRUE
 #endif
 
 /**
@@ -517,7 +517,7 @@
  * @note    Disabling this option saves both code and data space.
  */
 #if !defined(WSPI_USE_MUTUAL_EXCLUSION) || defined(__DOXYGEN__)
-#define WSPI_USE_MUTUAL_EXCLUSION           FALSE
+#define WSPI_USE_MUTUAL_EXCLUSION           TRUE
 #endif
 
 #endif /* HALCONF_H */
