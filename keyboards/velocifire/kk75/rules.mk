@@ -2,7 +2,10 @@
 MCU = STM32F103
 
 # Bootloader selection
-BOOTLOADER = stm32duino
+BOOTLOADER = kk75_bootloader
+# BOOTLOADER = STM32F103x8
+BOARD = KK75_BOARD
+# BOARD = STM32F103C8_MINIMAL
 
 #BOOTMAGIC_ENABLE = yes	# Virtual DIP switch configuration
 MOUSEKEY_ENABLE = yes	# Mouse keys
@@ -17,3 +20,4 @@ WS2812_DRIVER = no
 
 # Enter lower-power sleep mode when on the ChibiOS idle thread
 OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE
+# OPT_DEFS += -DDEBUG
