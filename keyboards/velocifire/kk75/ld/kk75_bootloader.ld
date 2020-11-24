@@ -15,11 +15,11 @@
 */
 
 /*
- * ST32F103xB memory setup for use with the originaljm60 bootloader.
+ * STM32F103C for use without a bootloader
  */
 MEMORY
 {
-    flash0  : org = 0x08009000, len = 128k - 0x9000
+    flash0  : org = 0x08000000, len = 128k
     flash1  : org = 0x00000000, len = 0
     flash2  : org = 0x00000000, len = 0
     flash3  : org = 0x00000000, len = 0
