@@ -1,12 +1,12 @@
 #pragma once
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0xBEEF
+#define VENDOR_ID       0xFE69
+#define PRODUCT_ID      0x0075
 #define DEVICE_VER      0x0001
 #define MANUFACTURER Velocifire
-#define PRODUCT KK75
-#define DESCRIPTION KK75
+#define PRODUCT Velocifire KK75
+#define DESCRIPTION Velocifire KK75
 
 // row0 2   PC14
 // row1 3   PC13

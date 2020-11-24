@@ -7,8 +7,8 @@ BOOTLOADER = kk75_bootloader
 BOARD = KK75_BOARD
 # BOARD = STM32F103C8_MINIMAL
 
-#BOOTMAGIC_ENABLE = yes	# Virtual DIP switch configuration
-MOUSEKEY_ENABLE = yes	# Mouse keys
+BOOTMAGIC_ENABLE = lite	# Virtual DIP switch configuration
+MOUSEKEY_ENABLE = no	# Mouse keys
 EXTRAKEY_ENABLE = yes	# Audio control and System control
 CONSOLE_ENABLE = yes	# Console for debug
 COMMAND_ENABLE = yes    # Commands for debug and configuration
