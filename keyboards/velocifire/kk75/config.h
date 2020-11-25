@@ -8,28 +8,6 @@
 #define PRODUCT Velocifire KK75
 #define DESCRIPTION Velocifire KK75
 
-// row0 2   PC14
-// row1 3   PC13
-// row2 4   PC15
-// row3 12  PA2
-// row4 11  PA1
-// row5 10  PA0
-
-// col00 29 PA8
-// col01 14 PA4
-// col02 15 PA5
-// col03 16 PA6
-// col04 17 PA7
-// col05 18 PB0
-// col06 19 PB1
-// col07 20 PB2
-// col08 21 PB10
-// col09 22 PB11
-// col10 26 PB13
-// col11 27 PB14
-// col12 38 PA15
-// col13 39 PB3
-
 /* key matrix size */
 #define MATRIX_ROWS 6
 #define MATRIX_COLS 14

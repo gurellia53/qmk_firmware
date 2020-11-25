@@ -1,11 +1,7 @@
 # MCU name
 MCU = STM32F103
 
-# Bootloader selection
-BOOTLOADER = kk75_bootloader
-# BOOTLOADER = STM32F103x8
 BOARD = KK75_BOARD
-# BOARD = STM32F103C8_MINIMAL
 
 BOOTMAGIC_ENABLE = lite	# Virtual DIP switch configuration
 MOUSEKEY_ENABLE = no	# Mouse keys

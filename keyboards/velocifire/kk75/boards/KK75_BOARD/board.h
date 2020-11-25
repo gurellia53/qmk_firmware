@@ -50,8 +50,6 @@
 #define GPIOA_USBDM             11      // pin 8
 #define GPIOA_USBDP             12      // pin 9
 
-// #define GPIOC_OSC32_IN          14
-// #define GPIOC_OSC32_OUT         15
 #define GPIOD_OSC_IN            0
 #define GPIOD_OSC_OUT           1
 
@@ -130,16 +128,12 @@
 /*
  * USB bus activation macro, required by the USB driver.
  */
-// #define usb_lld_connect_bus(usbp)	/* always connected */
-// #define usb_lld_connect_bus(usbp) palSetPadMode(GPIOB, 12, PAL_MODE_INPUT);
-// #define usb_lld_connect_bus(usbp) palClearPad(GPIOB, GPIOB_USB_DISC)
+#define usb_lld_connect_bus(usbp)	/* always connected */
 
 /*
  * USB bus de-activation macro, required by the USB driver.
  */
-// #define usb_lld_disconnect_bus(usbp)	/* always connected */
-// #define usb_lld_disconnect_bus(usbp) palSetPadMode(GPIOB, GPIOB_USB_DISC, PAL_MODE_OUTPUT_PUSHPULL); palClearPad(GPIOB, GPIOB_USB_DISC);
-// #define usb_lld_disconnect_bus(usbp) palSetPad(GPIOB, GPIOB_USB_DISC)
+#define usb_lld_disconnect_bus(usbp)	/* always connected */
 
 #if !defined(_FROM_ASM_)
 #ifdef __cplusplus
