@@ -83,6 +83,9 @@ enum queue_type {
     QTConsumer,   // 16-bit key code
 #ifdef MOUSE_ENABLE
     QTMouseMove,  // 4-byte mouse report
+#endif    
+#ifdef BLE_BATTERY_REPORT
+    QTBatteryReport,//(grid)battery level report
 #endif
 };
 
@@ -100,6 +103,9 @@ struct queue_item {
             int8_t  x, y, scroll, pan;
             uint8_t buttons;
         } mousemove;
+#ifdef BLE_BATTERY_REPORT
+        uint8_t batterylevel; //(grid)battery level report
+#endif
     };
 };
 
@@ -454,10 +460,26 @@ bool adafruit_ble_enable_keyboard(void) {
     // Reset the device so that it picks up the above changes
     static const char kATZ[] PROGMEM = "ATZ";
 
-    // Turn down the power level a bit
+#ifdef BLE_BATTERY_REPORT
+    //enable batservice (grid)
+    static const char kGATTClr[] PROGMEM = "AT+GATTCLEAR";
+    static const char kBatService[] PROGMEM = "AT+GATTADDSERVICE=UUID=0x180F";
+    static const char kBatLevel[] PROGMEM = "AT+GATTADDCHAR=UUID=0x2A19,PROPERTIES=0x12,MIN_LEN=1,VALUE=50";
+    static const char kFctrst[] PROGMEM = "AT+FACTORYRESET";
+#endif
+#ifndef MAX_PWR
     static const char  kPower[] PROGMEM             = "AT+BLEPOWERLEVEL=-12";
+#else
+    static const char  kPower[] PROGMEM             = "AT+BLEPOWERLEVEL=4"; // turn max power(grid)    
+#endif
     static PGM_P const configure_commands[] PROGMEM = {
-        kEcho, kGapIntervals, kGapDevName, kHidEnOn, kPower, kATZ,
+        kEcho, kGapIntervals, kGapDevName, kHidEnOn, kPower,
+#ifdef BLE_BATTERY_REPORT
+        kGATTClr, //(grid) add batservice
+        kBatService, //(grid)
+        kBatLevel,//(grid)
+#endif
+        kATZ, 
     };
 
     uint8_t i;
@@ -584,6 +606,14 @@ static bool process_queue_item(struct queue_item *item, uint16_t timeout) {
             snprintf(cmdbuf, sizeof(cmdbuf), fmtbuf, item->consumer);
             return at_command(cmdbuf, NULL, 0, true, timeout);
 
+#ifdef BLE_BATTERY_REPORT
+        //(grid) battery report
+        case QTBatteryReport:
+            strcpy_P(fmtbuf, PSTR("AT+GATTCHAR=1,%d"));
+            snprintf(cmdbuf, sizeof(cmdbuf), fmtbuf, item->batterylevel);
+            return at_command(cmdbuf, NULL, 0, true, timeout);
+#endif
+
 #ifdef MOUSE_ENABLE
         case QTMouseMove:
             strcpy_P(fmtbuf, PSTR("AT+BLEHIDMOUSEMOVE=%d,%d,%d,%d"));
@@ -642,7 +672,7 @@ void adafruit_ble_send_keys(uint8_t hid_modifier_mask, uint8_t *keys, uint8_t nk
 
         nkeys -= 6;
         keys += 6;
-    }
+    }    
 }
 
 void adafruit_ble_send_consumer_key(uint16_t usage) {
@@ -653,7 +683,7 @@ void adafruit_ble_send_consumer_key(uint16_t usage) {
 
     while (!send_buf.enqueue(item)) {
         send_buf_send_one();
-    }
+    }    
 }
 
 #ifdef MOUSE_ENABLE
@@ -670,6 +700,22 @@ void adafruit_ble_send_mouse_move(int8_t x, int8_t y, int8_t scroll, int8_t pan,
     while (!send_buf.enqueue(item)) {
         send_buf_send_one();
     }
+#endif
+
+#ifdef BLE_BATTERY_REPORT
+//(grid) function to set bat level
+bool adafruit_ble_send_batlevel(uint8_t batlevel) {
+  
+  struct queue_item item;
+
+  item.queue_type = QTBatteryReport;
+  item.batterylevel = batlevel;
+  item.added = timer_read();
+
+  while (!send_buf.enqueue(item)) {
+    send_buf_send_one();
+  }
+  return true;
 }
 #endif
 
