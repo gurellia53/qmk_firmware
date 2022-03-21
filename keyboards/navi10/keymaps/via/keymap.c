@@ -15,33 +15,26 @@
  */
 #include QMK_KEYBOARD_H
 
-enum layer_names {
-    L0,
-    L1,
-    L2,
-    L3
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [L0] = LAYOUT(
+    [0] = LAYOUT(
                  MO(1),     KC_HOME,    KC_PGUP,
                  KC_DEL,    KC_END,     KC_PGDN,
                  
                             KC_UP,
                  KC_LEFT,   KC_DOWN,    KC_RIGHT),
-    [L1] = LAYOUT(
+    [1] = LAYOUT(
                  _______,   _______,    KC_VOLU,
                  _______,   _______,    KC_VOLD,
                  
                             _______,
                  _______,   _______,    _______),
-    [L2] = LAYOUT(
+    [2] = LAYOUT(
                  _______,   _______,    _______,
                  _______,   _______,    _______,
                  
                             _______,
                  _______,   _______,    _______),
-    [L3] = LAYOUT(
+    [3] = LAYOUT(
                  _______,   _______,    _______,
                  _______,   _______,    _______,
                  
