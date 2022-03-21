@@ -21,7 +21,6 @@ enum layer_names {
     L2,
     L3
 };
-#define INDICATOR_LED B5
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L0] = LAYOUT(
@@ -49,15 +48,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                             _______,
                  _______,   _______,    _______)
 };
-
-layer_state_t layer_state_set_kb(layer_state_t state) {
-    switch (get_highest_layer(state)) {
-      case 0:
-        writePinHigh(INDICATOR_LED);
-        break;
-      default:
-        writePinLow(INDICATOR_LED);
-        break;
-      }
-    return layer_state_set_user(state);
-}
